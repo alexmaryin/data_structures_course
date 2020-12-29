@@ -1,2 +1,2 @@
-Tasks with algorithms & data structures from Stepik course https://stepik.org/course/217 
+Tasks with algorithms & data structures from Stepik course https://stepik.org/course/1547 
 shall be accumulated here.
