@@ -3,19 +3,17 @@ class Stack:
         self.list = []
 
     def push(self, item):
-        self.list.insert(0, item)
+        self.list.append(item)
 
     def pop(self):
         if self.list:
-            item = self.list[0]
-            self.list = self.list[1:]
-            return item
+            return self.list.pop()
         else:
             return None
 
     def last(self):
         if self.list:
-            return self.list[0]
+            return self.list[self.size() - 1]
         else:
             return None
 
