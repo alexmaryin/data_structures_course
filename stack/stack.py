@@ -6,7 +6,7 @@ class Stack:
         return self.list.__str__()
 
     def push(self, item):
-        self.list.append(item)
+        self.list.append(int(item))
 
     def pop(self):
         if self.list:

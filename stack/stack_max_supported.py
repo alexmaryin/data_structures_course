@@ -1,4 +1,4 @@
-from stack import Stack
+from stack.stack import Stack
 
 
 class StackMaxSupported:
@@ -11,14 +11,11 @@ class StackMaxSupported:
 
     def push(self, item):
         self.items.push(item)
-        self.maxes.push(item if self.maxes.size() == 0 or item > self.maxes.last() else self.maxes.last())
+        self.maxes.push(item if self.maxes.size() == 0 or int(item) > self.maxes.last() else self.maxes.last())
 
     def pop(self):
         self.maxes.pop()
         return self.items.pop()
-
-    def last(self):
-        return self.items.last()
 
     def max(self):
         return self.maxes.last()
