@@ -1,8 +1,9 @@
 from queue import Queue
+from queue_on_stacks import Queue2s
 
 
 def main():
-    queue = Queue()
+    queue = Queue2s()
     is_exit = False
     while not is_exit:
         raw = input("Enter command (q(enqueue) #value / dq(dequeue) / size / p(rint) / e(xit): ").split()
