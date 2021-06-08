@@ -1,22 +1,23 @@
-class Stack:
+class Queue:
     def __init__(self):
         self.list = []
 
     def __str__(self):
         return self.list.__str__()
 
-    def push(self, item):
+    def enqueue(self, item):
         self.list.append(item)
+        return True
 
-    def pop(self):
+    def dequeue(self):
         if self.list:
-            return self.list.pop()
+            return self.list.pop(0)
         else:
             return None
 
-    def last(self):
+    def get_next(self):
         if self.list:
-            return self.list[self.size() - 1]
+            return self.list[0]
         else:
             return None
 
