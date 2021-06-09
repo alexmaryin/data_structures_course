@@ -2,20 +2,26 @@ from buffered_queue import BufferedQueue
 
 
 class Processor:
-    def __init__(self, buffer):
-        self.buffer = BufferedQueue(buffer)
+    def __init__(self, buffer_limit):
+        self.buffer = BufferedQueue(buffer_limit)
         self.time = 0
 
-    def add(self, arrival, duration):
-        self.time = max(self.buffer.next() or 0, arrival)
-        if self.buffer.enqueue(self.time + duration):
-            return self.time
+    def check_for_time(self, time):
+        if self.buffer.size() == 0:
+            self.time = time
+            return True
+        while self.buffer.size() > 0 and self.buffer.next() <= time:
+            self.time = self.buffer.dequeue()
+        return True if self.buffer.size() < self.buffer.limit else False
+
+    def enqueue(self, arrival, duration):
+        if self.check_for_time(arrival):
+            time = max(arrival, self.buffer.next() or self.time)
+            print(time)
+            self.buffer.enqueue(time + duration)
+            self.time = time + duration
         else:
-            while self.buffer.size() > 0 and self.buffer.next() <= arrival:
-                self.buffer.dequeue()
-            if self.buffer.enqueue(self.time + duration):
-                return self.time
-        return -1
+            print(-1)
 
 
 if __name__ == '__main__':
@@ -24,5 +30,4 @@ if __name__ == '__main__':
         packages = [map(int, input().split()) for _ in range(count)]
         processor = Processor(limit)
         for idx, package in enumerate(packages):
-            arrival, duration = next(package), next(package)
-            print(processor.add(arrival, duration))
+            processor.enqueue(next(package), next(package))
