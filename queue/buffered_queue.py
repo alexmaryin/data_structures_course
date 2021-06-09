@@ -30,5 +30,11 @@ class BufferedQueue:
         else:
             return self.enqueued.first()
 
+    def last(self):
+        if self.enqueued.size() > 0:
+            return self.enqueued.last()
+        else:
+            return self.dequeued.first()
+
     def size(self):
         return self.enqueued.size() + self.dequeued.size()

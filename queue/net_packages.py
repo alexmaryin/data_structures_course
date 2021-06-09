@@ -8,15 +8,14 @@ class Processor:
 
     def check_for_time(self, time):
         if self.buffer.size() == 0:
-            self.time = time
             return True
         while self.buffer.size() > 0 and self.buffer.next() <= time:
-            self.time = self.buffer.dequeue()
+            self.buffer.dequeue()
         return True if self.buffer.size() < self.buffer.limit else False
 
     def enqueue(self, arrival, duration):
         if self.check_for_time(arrival):
-            time = max(arrival, self.buffer.next() or self.time)
+            time = max(arrival, self.buffer.last() or self.time)
             print(time)
             self.buffer.enqueue(time + duration)
             self.time = time + duration
