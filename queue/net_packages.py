@@ -1,9 +1,9 @@
-from buffered_queue import BufferedQueue
+from buffered_queue_max import BufferedQueueMaxSupported
 
 
 class Processor:
     def __init__(self, buffer_limit):
-        self.buffer = BufferedQueue(buffer_limit)
+        self.buffer = BufferedQueueMaxSupported(buffer_limit)
         self.time = 0
 
     def check_for_time(self, time):
@@ -11,11 +11,11 @@ class Processor:
             return True
         while self.buffer.size() > 0 and self.buffer.next() <= time:
             self.buffer.dequeue()
-        return True if self.buffer.size() < self.buffer.limit else False
+        return True if self.buffer.size() < self.buffer.buffer else False
 
     def enqueue(self, arrival, duration):
         if self.check_for_time(arrival):
-            time = max(arrival, self.buffer.last() or self.time)
+            time = max(arrival, self.buffer.max() or self.time)
             print(time)
             self.buffer.enqueue(time + duration)
             self.time = time + duration

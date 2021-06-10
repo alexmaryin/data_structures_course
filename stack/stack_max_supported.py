@@ -22,3 +22,9 @@ class StackMaxSupported:
 
     def size(self):
         return self.items.size()
+
+    def last(self):
+        return self.items.last()
+
+    def first(self):
+        return self.items.first()
