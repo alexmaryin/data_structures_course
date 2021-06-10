@@ -7,6 +7,7 @@ def main():
     stack = StackMaxSupported()
     commands_count = next(sys.stdin)
     commands = [line.split() for line in list(sys.stdin)]
+    assert len(commands) == commands_count
     for command in commands:
         if command[0] == 'push':
             stack.push(command[1])

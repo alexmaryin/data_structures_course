@@ -1,10 +1,13 @@
 from stack.stack import Stack
+from typing import Generic, TypeVar
+
+T = TypeVar('T')
 
 
-class Queue2s:
+class Queue2s(Generic[T]):
     def __init__(self):
-        self.enqueued = Stack()
-        self.dequeued = Stack()
+        self.enqueued = Stack[T]()
+        self.dequeued = Stack[T]()
 
     def __str__(self):
         return self.enqueued.__str__() + self.dequeued.__str__()

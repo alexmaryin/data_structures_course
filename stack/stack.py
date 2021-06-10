@@ -1,6 +1,11 @@
-class Stack:
+from typing import Generic, TypeVar, List
+
+T = TypeVar('T')
+
+
+class Stack(Generic[T]):
     def __init__(self):
-        self.list = []
+        self.list: List[T] = []
 
     def __str__(self):
         return self.list.__str__()

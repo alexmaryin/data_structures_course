@@ -1,6 +1,9 @@
-class BufferedStack:
+from stack.stack import Stack
+
+
+class BufferedStack(Stack):
     def __init__(self, buffer):
-        self.list = []
+        super().__init__()
         self.buffer = int(buffer)
 
     def __str__(self):
@@ -12,18 +15,3 @@ class BufferedStack:
             return True
         else:
             return False
-
-    def pop(self):
-        if self.list:
-            return self.list.pop()
-        else:
-            return None
-
-    def last(self):
-        if self.list:
-            return self.list[self.size() - 1]
-        else:
-            return None
-
-    def size(self):
-        return len(self.list)

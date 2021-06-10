@@ -3,8 +3,8 @@ from stack.stack import Stack
 
 class StackMaxSupported:
     def __init__(self):
-        self.items = Stack()
-        self.maxes = Stack()
+        self.items = Stack[int]()
+        self.maxes = Stack[int]()
 
     def __str__(self):
         return self.items.__str__() + f' max item is {self.maxes.last()}'

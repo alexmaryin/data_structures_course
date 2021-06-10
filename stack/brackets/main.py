@@ -1,3 +1,5 @@
+from typing import Tuple
+
 from stack.stack import Stack
 
 BRACKETS_SYMBOLS = ('{', '}', '(', ')', '[', ']')
@@ -5,16 +7,17 @@ BRACKETS_PAIRS = {'{': '}', '(': ')', '[': ']'}
 
 
 def check_expected_bracket(brackets, closed):
-    opened = brackets.last()[0]
-    if BRACKETS_PAIRS[opened] == closed:
-        brackets.pop()
-        return True
+    if brackets.size() > 0:
+        opened = brackets.last()[0]
+        if BRACKETS_PAIRS[opened] == closed:
+            brackets.pop()
+            return True
     else:
         return False
 
 
 def main():
-    brackets = Stack()
+    brackets = Stack[Tuple[str, int]]()
     s = input('Pass string with brackets to parse: ')
     for index in range(len(s)):
         if s[index] in BRACKETS_PAIRS.keys():
