@@ -18,12 +18,22 @@ def two_sum_map(nums: List[int], target: int) -> List[int]:
     return []
 
 
+def two_sum_map_fastest(nums: List[int], target: int) -> List[int]:
+    hash = {}
+    for i, v in enumerate(nums):
+        complete = target - v
+        if complete in hash:
+            return [hash[complete], i]
+        hash[v] = i
+    return []
+
+
 if __name__ == '__main__':
     inp = [2, 7, 11, 15]
     target = 9
     a, b = map(int, two_sum(inp, target))
     print(a, b)
     assert target == inp[a] + inp[b]
-    a, b = map(int, two_sum_map(inp, target))
+    a, b = map(int, two_sum_map_fastest(inp, target))
     print(a, b)
     assert target == inp[a] + inp[b]
