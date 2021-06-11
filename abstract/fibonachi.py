@@ -1,3 +1,4 @@
+import math
 from functools import lru_cache
 from utils.time_measuring import measured_time
 
@@ -24,6 +25,7 @@ def fibonachi_lru(n):
 
 
 # Fastest algorithm on iteration instead of recursive
+@measured_time
 def fibonachi_loop(n):
     if n == 0:
         return 0
@@ -42,13 +44,19 @@ def fibonachi_generator(n):
         yield next
 
 
+# Algorithm with Binet's formula
 @measured_time
+def fibonachi_binet(n):
+    sqrt5 = math.sqrt(5)
+    phi = (1 + sqrt5) / 2
+    return int(phi ** n / sqrt5 + 0.5)
+
+
 def main():
-    for i in fibonachi_generator(50):
-        print(i)
-    print(fibonachi_lru(50))
-    print(fibonachi_memoized(50))
-    print(fibonachi_loop(50))
+    print(fibonachi_lru(500))
+    print(fibonachi_memoized(500))
+    print(fibonachi_loop(500))
+    print(fibonachi_binet(500))
 
 
 if __name__ == "__main__":

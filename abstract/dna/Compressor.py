@@ -1,5 +1,7 @@
 import random
 
+from abstract.crypto.Bits import CompressedGene2
+
 
 class CompressedGene:
     def __init__(self, gene: str):
@@ -25,9 +27,12 @@ class CompressedGene:
 
 if __name__ == '__main__':
     from sys import getsizeof
-    origin = ''.join([random.choice("ACGT") for _ in range(0, 100000)])
+    origin = ''.join([random.choice("ACGT") for _ in range(0, 100)])
+    # origin = 'ACGTACGTACGTAACCGGTTACGTACGTACGTAACCGGTTACGTACGTACGTAACCGGTTACGTACGTACGTAACCGGTT'
     print(f'Origin string in {getsizeof(origin)} bytes')
-    compressed = CompressedGene(origin)
-    print(f'Compressed gene in {getsizeof(compressed.compressed)} bytes')
+    print(origin)
+    compressed = CompressedGene2(origin)
+    print(f'Compressed gene in {getsizeof(compressed.compressed.item)} bytes')
+    print(compressed.decompress())
     assert origin == compressed.decompress()
 
