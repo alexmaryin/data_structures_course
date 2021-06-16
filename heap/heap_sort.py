@@ -12,7 +12,7 @@ def heap_sort(source: List[int]) -> List[int]:
 
 def build_heap(source: List[int]):
     heap = HeapMax(source)
-    for i in range(math.floor(heap.size()/2), -1, -1):
+    for i in range(heap.size() // 2, -1, -1):
         heap.sift_down(i)
     return heap
 

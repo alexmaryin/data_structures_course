@@ -13,11 +13,11 @@ def parent_id(idx):
 
 
 def left_id(idx):
-    return idx * 2 + 1
+    return idx * 2
 
 
 def right_id(idx):
-    return idx * 2 + 2
+    return idx * 2 + 1
 
 
 class HeapMax:
