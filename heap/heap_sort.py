@@ -12,15 +12,15 @@ def heap_sort(source: List[int]) -> List[int]:
 
 def build_heap(source: List[int]):
     heap = HeapMax(source)
-    for i in range(heap.size() // 2, -1, -1):
-        heap.sift_down(i)
+    for i in reversed(range(heap.size() // 2)):
+        heap.sift_up(i)
     return heap
 
 
 # TODO Don't work correctly!!
 def heap_sort2(source: List[int]) -> List[int]:
     heap = build_heap(source)
-    for i in range(heap.size()-1, 0, -1):
+    for i in reversed(range(heap.size()-1)):
         heap.swap(0, i)
         heap.sift_down(0)
     return [item.priority for item in heap.data]
