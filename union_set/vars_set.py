@@ -1,29 +1,23 @@
 from typing import Dict
 
 
-class TreeSet1:
+class VarSet:
     def __init__(self):
         self.parents: Dict[int, int] = {}
         self.ranks: Dict[int, int] = {}
-        self.counts: Dict[int, int] = {}
-        self.max_table = 0
 
-    def __repr__(self): return f'Parents: {self.parents}\nRanks:   {self.ranks}'
-    def __str__(self): return self.__repr__()
-
-    def add(self, item: int, records: int):
-        self.parents[item] = item
-        self.ranks[item] = 0
-        self.counts[item] = records
-        self.max_table = max(self.max_table, records)
+    def add(self, *args):
+        for item in args:
+            self.parents[item] = item
+            self.ranks[item] = 0
 
     def find(self, item):
         if item != self.parents[item]:
             self.parents[item] = self.find(self.parents[item])
         return self.parents[item]
 
-    def get_max(self):
-        return self.max_table
+    def is_equal(self, first, second):
+        return self.find(first) == self.find(second)
 
     def union(self, first, second):
         first_parent, second_parent = self.find(first), self.find(second)
@@ -31,10 +25,7 @@ class TreeSet1:
             return
         if self.ranks[first_parent] > self.ranks[second_parent]:
             self.parents[second_parent] = first_parent
-            self.counts[first_parent] += self.counts[second_parent]
         else:
             self.parents[first_parent] = second_parent
-            self.counts[second_parent] += self.counts[first_parent]
             if self.ranks[first_parent] == self.ranks[second_parent]:
                 self.ranks[second_parent] += 1
-        self.max_table = max(self.max_table, self.counts[first_parent], self.counts[second_parent])
