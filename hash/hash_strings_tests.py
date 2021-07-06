@@ -33,7 +33,7 @@ def test_from_stepik_1(new_hash: HashStrings):
     new_hash.add_string('GooD')
     results.append(new_hash.check_bucket(2))
     new_hash.del_string('good')
-    for l in results: print(l)
+    assert results == ['HellO world', 'no', 'yes', 'HellO', 'GooD luck']
 
 
 if __name__ == '__main__':

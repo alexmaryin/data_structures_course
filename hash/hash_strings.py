@@ -3,6 +3,7 @@ from typing import List
 
 class HashStrings:
     def __init__(self, size):
+        self.size = size
         self.p = 1000000007
         self.x = 263
         self.squads = {0: 1}
@@ -17,8 +18,7 @@ class HashStrings:
         hash_code = 0
         for idx, sym in enumerate(string):
             hash_code += ord(sym) * self.get_squad_mod(idx)
-        hash_code = hash_code % self.p % len(string)
-        print(f'hash for {string} is {hash_code}')
+        hash_code = hash_code % self.p % self.size
         return hash_code
 
     def add_string(self, string):
