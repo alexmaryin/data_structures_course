@@ -7,7 +7,7 @@ def solve(left: Stack[int], right: Stack[int], temp: Stack[int], n):
     else:
         solve(left, temp, right, n - 1)
         solve(left, right, temp, 1)
-        solve(temp, right, left, n -1)
+        solve(temp, right, left, n - 1)
 
 
 def main():
