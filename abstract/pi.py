@@ -16,7 +16,7 @@ def calc_pi(precision) -> float:
 
 @measured_time
 def main():
-    print(calc_pi(40000000))
+    print(calc_pi(80000000))
 
 
 if __name__ == "__main__":

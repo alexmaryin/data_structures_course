@@ -57,6 +57,7 @@ def main():
     print(fibonachi_memoized(500))
     print(fibonachi_loop(500))
     print(fibonachi_binet(500))
+    print(fibonachi_recursive(500))
 
 
 if __name__ == "__main__":

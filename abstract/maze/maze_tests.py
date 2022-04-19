@@ -14,7 +14,7 @@ if __name__ == "__main__":
         if solution:
             path = node_to_path(solution)
             maze.mark(path)
-            print(maze)
+            # print(maze)
             print(f'Total {len(path)} steps.')
             maze.clear(path)
         else:
